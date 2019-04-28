@@ -1,0 +1,8 @@
+path: foo
+table: foo
+fields:
+  name:
+  email:
+  phone:
+  birthdate:
+      type: date

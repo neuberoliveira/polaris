@@ -1,0 +1,9 @@
+path: bar
+table: bar
+fields:
+  id:
+    type: int
+  size:
+    type: int
+  weight:
+    type: float
