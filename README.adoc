@@ -21,6 +21,15 @@ To run your application:
 ./gradlew clean run
 ```
 
+== Roadmap
+- [x] Yaml files database/endpoint configs
+- [ ] Request Handlers (CRUD):
+- [ ] List Filters
+- [ ] Validations
+- [ ] Access Permissions
+- [ ] Authentication
+- [ ] Table Relations
+
 == Help
 
 * https://vertx.io/docs/[Vert.x Documentation]
