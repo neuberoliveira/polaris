@@ -2,6 +2,7 @@ package br.com.neuberoliveira.polaris
 
 import br.com.neuberoliveira.polaris.Model.EndpointConfig
 import br.com.neuberoliveira.polaris.Model.loadEndpoint
+import br.com.neuberoliveira.polaris.Request.RequestHandler
 import io.vertx.core.AbstractVerticle
 import io.vertx.core.Future
 import io.vertx.core.http.HttpMethod
@@ -35,8 +36,7 @@ class MainVerticle : AbstractVerticle(){
 
 		val server = vertx.createHttpServer()
 		val router = Router.router(vertx)
-
-        val projectDir:String = System.getProperty("user.dir")
+		val projectDir:String = System.getProperty("user.dir")
         val configsDir = File("$projectDir/src/main/conf")
 
         val endpoints = mutableMapOf<String, EndpointConfig>()
@@ -47,9 +47,12 @@ class MainVerticle : AbstractVerticle(){
         }
 
 		endpoints.forEach{ (_,ep) ->
-			router.route(HttpMethod.GET, "/${ep.path}").handler { req ->
-				req.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${ep.path} endpoint")
-			}
+			val handler = RequestHandler(ep)
+			router.route(HttpMethod.POST, "/${ep.path}").handler(handler.handleSave())
+			router.route(HttpMethod.GET, "/${ep.path}").handler(handler.handleList())
+			router.route(HttpMethod.GET, "/${ep.path}/:id").handler(handler.handleShow())
+			router.route(HttpMethod.PUT, "/${ep.path}").handler(handler.handleUpdate())
+			router.route(HttpMethod.DELETE, "/${ep.path}/:id").handler(handler.handleDelete())
 		}
 
 		server.requestHandler(router)

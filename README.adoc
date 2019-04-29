@@ -23,7 +23,7 @@ To run your application:
 
 == Roadmap
 - [x] Yaml files database/endpoint configs
-- [ ] Request Handlers (CRUD):
+- [ ] Request Handlers (CRUD)
 - [ ] List Filters
 - [ ] Validations
 - [ ] Access Permissions
