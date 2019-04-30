@@ -8,23 +8,23 @@ typealias Handler = (routingContext:RoutingContext)->Unit
 class RequestHandler(ep:EndpointConfig) {
 	var endpoint:EndpointConfig = ep
 
-	fun handleSave():Handler {
-		return {req -> req.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} SAVE")}
+	fun handleSave(request:RoutingContext) {
+		request.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} SAVE")
 	}
 
-	fun handleList():Handler {
-		return {req -> req.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} LIST")}
+	fun handleList(request:RoutingContext) {
+		request.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} LIST")
 	}
 
-	fun handleShow():Handler {
-		return {req -> req.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} SHOW")}
+	fun handleShow(request:RoutingContext) {
+		request.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} SHOW")
 	}
 
-	fun handleUpdate():Handler {
-		return {req -> req.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} UPDATE")}
+	fun handleUpdate(request:RoutingContext) {
+		request.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} UPDATE")
 	}
 
-	fun handleDelete():Handler {
-		return {req -> req.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} DELETE")}
+	fun handleDelete(request:RoutingContext) {
+		request.response().putHeader("content-type", "text/plain").end("HAR!!! this is the ${endpoint.path} DELETE")
 	}
 }

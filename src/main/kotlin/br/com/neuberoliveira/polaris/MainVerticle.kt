@@ -48,11 +48,11 @@ class MainVerticle : AbstractVerticle(){
 
 		endpoints.forEach{ (_,ep) ->
 			val handler = RequestHandler(ep)
-			router.route(HttpMethod.POST, "/${ep.path}").handler(handler.handleSave())
-			router.route(HttpMethod.GET, "/${ep.path}").handler(handler.handleList())
-			router.route(HttpMethod.GET, "/${ep.path}/:id").handler(handler.handleShow())
-			router.route(HttpMethod.PUT, "/${ep.path}").handler(handler.handleUpdate())
-			router.route(HttpMethod.DELETE, "/${ep.path}/:id").handler(handler.handleDelete())
+			router.route(HttpMethod.POST, "/${ep.path}").handler(handler::handleSave)
+			router.route(HttpMethod.GET, "/${ep.path}").handler(handler::handleList)
+			router.route(HttpMethod.GET, "/${ep.path}/:id").handler(handler::handleShow)
+			router.route(HttpMethod.PUT, "/${ep.path}").handler(handler::handleUpdate)
+			router.route(HttpMethod.DELETE, "/${ep.path}/:id").handler(handler::handleDelete)
 		}
 
 		server.requestHandler(router)
